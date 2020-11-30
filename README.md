@@ -40,7 +40,7 @@ After built and run `./particle_filter`, the Udacity's [Term 2 simulator](https:
 
 Basically, the particle filter was implemented as shown in the figure below.
 
-<img src="pics/particle_filter_algorithm.jpg" alt="Particle Filter Algorithm" />
+<img src="./pics/particle_filter_algorithm.jpg" alt="Particle Filter Algorithm" />
 
 ## 1. Initialization
 
@@ -51,11 +51,11 @@ So it takes accounting for Gaussian noise. It also is important to note that par
 Using the motion model (bycicle model), we predict where the vehicle will be at the next time step, by updating based on yaw rate and velocity, while accounting for Gaussian sensor noise.
 Yaw angle is heading direction of a car. It is measured from x-axis in the map coordinate (sometimes called global coordinate). In the figure below, yaw (theta) is equal to `pi/4`.
 
-<img src="pics/yaw_angle.jpg" alt="Yaw angle"/>
+<img src="./pics/yaw_angle.jpg" alt="Yaw angle"/>
 
 To predict the motion, we use below equations by assuming that a yaw (turn) rate and velocity is constant.
 
-<img src="pics/motion_model.jpg" alt="Motion Model" />
+<img src="./pics/motion_model.jpg" alt="Motion Model" />
 
 ## 3. Update step (Update weights)
 We need to correctly perform observation measurement transformations, along with identifying measurement landmark associations in order to correctly calculate each particle's weight.
@@ -65,7 +65,7 @@ To update weight of each particle, the following steps are performed:
 
 We first need to transform the car's measurements from its local car coordinate system to the map's coordinate system.
 
-<img src="pics/localization-map-concept.png" alt="Localization map concept" />
+<img src="./pics/localization-map-concept.png" alt="Localization map concept" />
 
 In the graph above we have a car (ground truth position) that observes three nearby landmarks, each one labeled OBS1, OBS2, OBS3. 
 Each observation measurement has x, and y values in the car's coordinate system. We have a particle "P" (estimated position of the car) above with position (4,5) on the map with heading -90 degrees. 
@@ -73,7 +73,7 @@ The first task is to transform each observation marker from the vehicle's coordi
 
 This transformation are carried out for all observations using below equations of homogenous transformation.
 
-<img src="pics/homogenous_transformation.jpg" alt="Homogenous transformation" />
+<img src="./pics/homogenous_transformation.jpg" alt="Homogenous transformation" />
 
 Observations in the car coordinate system can be transformed into map coordinates (*Xm* and *Ym*) by passing car observation coordinates (*Xc* and *Yc*), map particle coordinates (*Xp* and *Yp*), 
 and our rotation angle (-90 degrees for above example) through a homogenous transformation matrix. This homogenous transformation matrix, shown below, performs rotation and translation.
@@ -93,7 +93,7 @@ The Multivariate-Gaussian probability density has two dimensions, x and y.
 The mean of the Multivariate-Gaussian is the measurement's associated landmark position and the Multivariate-Gaussian's standard deviation is described by our initial uncertainty in the x and y ranges. 
 The Multivariate-Gaussian is evaluated at the point of the transformed measurement's position. The formula for the Multivariate-Gaussian can be seen below.
 
-<img src="pics/multivariate-gaussian.jpg" alt="Multivariate-Gaussian probability" />
+<img src="./pics/multivariate-gaussian.jpg" alt="Multivariate-Gaussian probability" />
 
 Updating weights have 2 substeps: 
 * Determine measurement probabilities by calculating weight for each observation with multivariate Gaussian.
@@ -123,12 +123,12 @@ Generally, what I observed from results is that error decreases when number of p
 
 __Number of particles: 100__
 
-<img src="pics/output_1.jpg" alt="Output for 100 particles" />
+<img src="./pics/output_1.jpg" alt="Output for 100 particles" />
 
 __Number of particles: 200__
 
-<img src="pics/output_2.jpg" alt="Output for 200 particles" />
+<img src="./pics/output_2.jpg" alt="Output for 200 particles" />
 
 __Number of particles: 500__
 
-<img src="pics/output_3.jpg" alt="Output for 500 particles" />
+<img src="./pics/output_3.jpg" alt="Output for 500 particles" />

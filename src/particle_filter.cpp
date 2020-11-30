@@ -120,7 +120,7 @@ void ParticleFilter::dataAssociation(vector<LandmarkObs> predictions,
 	
 	// Find the nearest observation for every landmark
 	for (unsigned int i = 0; i < observations.size(); i++) {
-		// Initialize landmark every predictions
+		// Initialize minimum and landmark_id
 		minimum = dist( observations[i].obs.x, observations[i].obs.y, 
 						predictions[0].x,  predictions[0].y);
 		landmark_id = predictions[0].id;			
@@ -130,8 +130,6 @@ void ParticleFilter::dataAssociation(vector<LandmarkObs> predictions,
 			// Calculate distance between observation and prediction
 			distance = dist(observations[i].obs.x, observations[i].obs.y, 
 							predictions[j].x,  predictions[j].y);
-		
-			// find the predicted landmark nearest the current observed landmark
 			if (distance < minimum) {
 				minimum = distance;
 				landmark_id = predictions[j].id;
@@ -199,7 +197,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	double temp_x;
 	double temp_y;
 	
-	// Calculate normalization term and it is constant
+	// Calculate normalization term that is same for all particles
 	double gauss_norm = 1 / (2 * M_PI * std_landmark[0] * std_landmark[1]);
 
 	for (int i = 0; i < num_particles; i++) {

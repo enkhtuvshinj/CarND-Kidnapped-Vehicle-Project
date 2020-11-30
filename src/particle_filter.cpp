@@ -119,9 +119,6 @@ void ParticleFilter::dataAssociation(vector<LandmarkObs> predictions,
 	int vector_id;
 	
 	// Find the nearest observation for every landmark
-	// If no landmark is given, then iteration doesn't work
-	// If landmarks predicted, iterate throught observations for each landmark
-	// Note: if landmark predicted, the nearest observation always exists in according to below algorithm.
 	for (unsigned int i = 0; i < observations.size(); i++) {
 		// Initialize landmark every predictions
 		minimum = dist( observations[i].obs.x, observations[i].obs.y, 

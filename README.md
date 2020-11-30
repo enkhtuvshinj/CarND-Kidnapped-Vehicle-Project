@@ -3,7 +3,7 @@
 Udacity's Self-Driving Car Engineer Nanodegree Program
 
 ---
-In this project, two dimensional particle filter was implemented in C++ to localize a kidnapped vehicle for a given-map. 
+In this project, two dimensional particle filter was implemented in C++ to localize a vehicle for a given-map. 
 The particle filter is given a map and some initial localization information (analogous to what a GPS would provide). 
 During the run-time, at each time step the filter also gets observation and control data from the [Term 2 simulator](https://github.com/udacity/self-driving-car-sim/releases).
 
